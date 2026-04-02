@@ -177,7 +177,9 @@ class SilktideCookieBanner {
 
     this.removeBanner();
     this.hideBackdrop();
-    this.toggleModal(false);
+    if (this.modal) {
+      this.modal.style.display = 'none';
+    }
     this.allowBodyScroll();
     this.showCookieIcon();
 
@@ -560,8 +562,8 @@ class SilktideCookieBanner {
   showCookieIcon() {
     if (this.cookieIcon) {
       this.cookieIcon.style.display = 'flex';
-      this.allowBodyScroll();
     }
+    this.allowBodyScroll();
   }
 
   hideCookieIcon() {
@@ -773,16 +775,19 @@ class SilktideCookieBanner {
   }
 
   preventBodyScroll() {
+    this._scrollY = window.scrollY;
     document.body.style.overflow = 'hidden';
-    // Prevent iOS Safari scrolling
-    document.body.style.position = 'fixed';
-    document.body.style.width = '100%';
   }
 
   allowBodyScroll() {
     document.body.style.overflow = '';
     document.body.style.position = '';
     document.body.style.width = '';
+    document.documentElement.style.overflow = '';
+    if (this._scrollY !== undefined) {
+      window.scrollTo(0, this._scrollY);
+      this._scrollY = undefined;
+    }
   }
 }
 
