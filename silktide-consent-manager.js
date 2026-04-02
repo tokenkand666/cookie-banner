@@ -178,6 +178,7 @@ class SilktideCookieBanner {
     this.removeBanner();
     this.hideBackdrop();
     this.toggleModal(false);
+    this.allowBodyScroll();
     this.showCookieIcon();
 
     this.config.cookieTypes.forEach((type) => {
