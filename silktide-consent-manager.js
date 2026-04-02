@@ -678,6 +678,12 @@ class SilktideCookieBanner {
           // handle the case where the user closes without making a choice for the first time
           this.handleClosedWithNoChoice();
         }
+
+        // Force scroll restoration and cookie icon after all callbacks
+        this.allowBodyScroll();
+        if (this.cookieIcon) {
+          this.cookieIcon.style.display = 'flex';
+        }
       });
       acceptAllButton?.addEventListener('click', () => this.handleCookieChoice(true));
       rejectAllButton?.addEventListener('click', () => this.handleCookieChoice(false));
