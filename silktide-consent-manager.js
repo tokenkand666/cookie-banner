@@ -560,6 +560,7 @@ class SilktideCookieBanner {
   showCookieIcon() {
     if (this.cookieIcon) {
       this.cookieIcon.style.display = 'flex';
+      this.allowBodyScroll();
     }
   }
 
